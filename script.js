@@ -10,6 +10,9 @@ var score = 0
 var scoreCounter = document.querySelector(".score");
 var formHS = document.querySelector(".hsForm")
 var submitHS = document.querySelector(".submitHS");
+var view = document.querySelector(".view");
+var clear = document.querySelector(".clear")
+var init = document.querySelector(".fname")
 // variables for questions
 var answerButton = document.querySelectorAll(".answer");
 // var answerButtonOne = document.querySelector(".answerOne");
@@ -77,9 +80,7 @@ function answerCheck(event){
     
 }
 
-// event Listeners
-startButton.addEventListener("click", unhideQuestion);
-startButton.addEventListener("click", startTimer);
+
 
 
 for (i of answerButton){
@@ -103,4 +104,42 @@ function endGame(){
     winCheck = false;
     clearInterval.intervalTimer
     mike.classList.remove("hidden");
+    formHS.classList.remove("hidden");
+    view.classList.remove("hidden");
+    clear.classList.remove("hidden")
 }
+
+function submitHSSave(event){
+    event.preventDefault()
+    var highscore = localStorage.getItem("Highscore")
+    if (!highscore){
+        localStorage.setItem("Highscore", score)
+        localStorage.setItem("Initials", fname.value)
+    } else if (score > highscore){
+        localStorage.setItem("Highscore", score)
+        localStorage.setItem("Initials", fname.value)
+    } else {
+        alert("your score was not high enough doofus")
+    }
+    
+
+}
+
+
+
+
+// event Listeners
+startButton.addEventListener("click", unhideQuestion);
+startButton.addEventListener("click", startTimer);
+submitHS.addEventListener("click", submitHSSave);
+view.addEventListener("click", function(){
+    var highscore = localStorage.getItem("Highscore")
+    if (!highscore){
+        alert("there is no previous high score")
+        return
+    }
+    alert("Previous HS was " + highscore + " which was scored by: " + localStorage.getItem("Initials"))
+})
+clear.addEventListener("click", function(){
+    localStorage.removeItem("Highscore")
+})
