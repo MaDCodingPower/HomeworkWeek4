@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+header {
+    font-size: 3em;
+    text-align: center;
+    width: 100%;
+    padding: 1em;
+    background-color: aqua;
+}
+
+
+
+h1{
+    text-align: center;
+    margin-top: 40px;
+}
+
+.buttonContainer{
+    width: 100%;
+    position: relative;
+}
+
+.centerButton{
+    position: absolute;
+    margin-top: 50px;
+    left: 48%;
+}
+
+.buttonStart{
+    padding: 1em 4em;
+}
+
+h2{
+    font-size: 2em;
+    text-align: center;
+}
+
+.wrongAnswer, .rightAnswer{
+    position: relative;
+    margin-top: 20px;
+    left: 44%;
+    padding: 1em 10em;
+}
+
+.question{
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+.time{
+    font-size: 2em;
+}
