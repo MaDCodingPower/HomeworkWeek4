@@ -56,3 +56,8 @@ h2{
 .time{
     font-size: 2em;
 }
+
+.loser {
+    font-size: 6em;
+    text-align: center;
+}

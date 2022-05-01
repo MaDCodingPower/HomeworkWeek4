@@ -1,8 +1,11 @@
 var startButton = document.querySelector(".buttonStart");
 var startMenu = document.querySelector(".container");
 var timer = document.querySelector(".time")
-var secondsLeft = 75
+var secondsLeft = 3
 var questionNum = 0
+var mike = document.querySelector(".mike");
+var winCheck = ""
+var loser = document.querySelector(".loser");
 // variables for questions
 var answerButton = document.querySelectorAll(".answer");
 // var answerButtonOne = document.querySelector(".answerOne");
@@ -18,15 +21,15 @@ function unhideQuestion(){
 };
 
 // function to start timer
-function lowerTimer(){
-    secondsLeft--
-    timer.textContent = secondsLeft
-    if(secondsLeft === 0){
-        timer.textContent = "";
-        clearInterval(intervalTimer);
-    }
-}
-
+// function lowerTimer(){
+//     secondsLeft--
+//     timer.textContent = secondsLeft
+//     if(secondsLeft === 0){
+//         timer.classList.add("hidden");
+//         winCheck = false;
+//         clearInterval(intervalTimer);
+//     }
+// }
 function startTimer(){
     timer.textContent = secondsLeft;
     var intervalTimer = setInterval(function(){
@@ -34,11 +37,13 @@ function startTimer(){
             secondsLeft--
             timer.textContent = secondsLeft
         } else {
-            timer.textContent = ""
-            clearInterval.intervalTimer
+            loseGame();
         }}
     , 1000);
 }
+
+
+// 
 
 
 
@@ -47,14 +52,15 @@ function answerCheck(event){
     var answerClicked = event.target
     if (answerClicked.classList.contains("wrongAnswer")){
         console.log("hi")
+        secondsLeft -= 5
     } else {
         questionList[questionNum].classList.add("hidden");
         questionNum++;
         if (questionNum < questionList.length){
             questionList[questionNum].classList.remove("hidden");
             
-        } else{
-            endgame();
+        // } else{
+        //     endgame();
         }
     }
 }
@@ -68,8 +74,12 @@ for (i of answerButton){
     i.addEventListener("click", answerCheck)
 }
 
-// answerButtonOne.addEventListener("click", answerCheck);
-// answerButtonTwo.addEventListener("click", answerCheck);
-// answerButtonThree.addEventListener("click", answerCheck);
-// answerButtonFour.addEventListener("click", answerCheck);
-
+// function for losing
+function loseGame(){
+    loser.classList.remove("hidden");
+    timer.classList.add("hidden");
+    winCheck = false;
+    clearInterval.intervalTimer
+    mike.classList.remove("hidden");
+    questionList[questionNum].classList.add("hidden");
+}
